@@ -15,7 +15,6 @@ import fr.quarantedeuxmulhouse.tunsinge.todoer.viewmodel.TaskListViewModel
 
 @Composable
 fun TaskScreen(
-    padding: PaddingValues,
     modifier: Modifier = Modifier,
     taskManager: TaskListViewModel = viewModel()
 ) {

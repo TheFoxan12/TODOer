@@ -28,7 +28,7 @@ class MainActivity : ComponentActivity() {
                             text = "TODOer",
                             style = TextStyle(fontSize = 40.sp)
                         )
-                        TaskScreen(padding)
+                        TaskScreen()
                     }
                 }
             }
