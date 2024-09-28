@@ -28,6 +28,11 @@ class TaskListViewModel(private val repository: TaskRepository) : ViewModel() {
         val updatedTask = task.copy(initialName = name)
         repository.updateTask(updatedTask)
     }
+
+    fun changeDate(task: TaskData, date: Long?) = viewModelScope.launch {
+        val updatedTask = task.copy(initialDate = date)
+        repository.updateTask(updatedTask)
+    }
 }
 
 class TaskListViewModelFactory(private val repository: TaskRepository): ViewModelProvider.Factory {

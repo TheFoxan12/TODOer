@@ -12,8 +12,10 @@ data class TaskData(
     val id: UUID = UUID.randomUUID(),
     var initialName: String = "",
     var initialState: Boolean = false,
+    var initialDate: Long? = null,
 )
 {
     var state by mutableStateOf(initialState)
     var name by mutableStateOf(initialName)
+    var date by mutableStateOf(initialDate)
 }

@@ -12,6 +12,7 @@ fun TaskList(
     list: List<TaskData>?,
     onCheckedTask: (TaskData, Boolean) -> Unit,
     onNameChange: (TaskData, String) -> Unit,
+    onDateChange: (TaskData, Long?) -> Unit,
     onCloseTask: (TaskData) -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -26,11 +27,15 @@ fun TaskList(
                 Task(
                     name = task.name,
                     checked = task.state,
+                    date = task.date,
                     onStateChange = { state ->
                         onCheckedTask(task, state)
                     },
                     onNameChange = { name ->
                         onNameChange(task, name)
+                    },
+                    onDateChange = { date ->
+                        onDateChange(task, date)
                     },
                     onClose = { onCloseTask(task) }
                 )
