@@ -1,35 +1,41 @@
 package fr.quarantedeuxmulhouse.tunsinge.todoer.viewmodel
 
-import android.app.Application
-import androidx.compose.runtime.mutableStateListOf
-import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
+import fr.quarantedeuxmulhouse.tunsinge.todoer.data.TaskRepository
 import kotlinx.coroutines.launch
 
-class TaskListViewModel(application: Application) : AndroidViewModel(application) {
+class TaskListViewModel(private val repository: TaskRepository) : ViewModel() {
     private var _indexMax = 0
-    private var _tasks = mutableStateListOf<TaskData>()
-    val tasks: List<TaskData>
-        get() = _tasks
+    private var _tasks: LiveData<List<TaskData>> = repository.allTasks.asLiveData()
 
-    fun addTask(text: String) {
-        _tasks.add(TaskData(_indexMax++, text, false))
+    fun addTask(task: TaskData) = viewModelScope.launch {
+        repository.insertTask(task)
     }
 
-    fun removeTask(task: TaskData) {
-        if (_tasks.isNotEmpty())
-            _tasks.remove(task)
+    fun removeTask(task: TaskData) = viewModelScope.launch {
+        repository.deleteTask(task)
     }
 
-    fun changeState(task: TaskData, state: Boolean) {
-        _tasks.find { it.id == task.id }?.let { item ->
-            item.state = state
-        }
+    fun changeState(task: TaskData, state: Boolean) = viewModelScope.launch {
+        task.state = state
+        repository.updateTask(task)
     }
 
     fun changeName(task: TaskData, name: String) = viewModelScope.launch {
-        _tasks.find { it.id == task.id }?.let { item ->
-            item.name = name
-        }
+        task.name = name
+        repository.updateTask(task)
+    }
+}
+
+class TaskListViewModelFactory(private val repository: TaskRepository): ViewModelProvider.Factory {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+        if (modelClass.isAssignableFrom(TaskListViewModel::class.java))
+            return TaskListViewModel(repository) as T
+
+        throw IllegalArgumentException("Unknown class")
     }
 }

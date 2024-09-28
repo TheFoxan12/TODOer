@@ -11,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
+import fr.quarantedeuxmulhouse.tunsinge.todoer.viewmodel.TaskData
 import fr.quarantedeuxmulhouse.tunsinge.todoer.viewmodel.TaskListViewModel
 
 @Composable
@@ -25,23 +26,29 @@ fun TaskScreen(
         Row(
             modifier = Modifier.weight(2f).fillMaxHeight()
         ) {
-            TaskList(
-                list = taskManager.tasks,
-                onCheckedTask = { task, state ->
-                    taskManager.changeState(task, state)
-                },
-                onNameChange = { task, name ->
-                    taskManager.changeName(task, name)
-                },
-                onCloseTask = { task ->
-                    taskManager.removeTask(task)
-                }
-            )
+//            TaskList(
+//                list = taskManager,
+//                onCheckedTask = { task, state ->
+//                    taskManager.changeState(task, state)
+//                },
+//                onNameChange = { task, name ->
+//                    taskManager.changeName(task, name)
+//                },
+//                onCloseTask = { task ->
+//                    taskManager.removeTask(task)
+//                }
+//            )
+            Text("bonjour")
         }
         Row(
         ) {
             Button(
-                onClick = { taskManager.addTask("nouvelle tâche") }
+                onClick = { taskManager.addTask(
+                    TaskData(
+                        initialName = "Nouvelle tâche",
+                        initialState = false
+                    )
+                ) }
             ) {
                 Text("Créer une nouvelle tâche")
             }
