@@ -1,11 +1,11 @@
 package fr.quarantedeuxmulhouse.tunsinge.todoer.data
 
 import androidx.annotation.WorkerThread
+import androidx.lifecycle.LiveData
 import fr.quarantedeuxmulhouse.tunsinge.todoer.viewmodel.TaskData
-import kotlinx.coroutines.flow.Flow
 
 class TaskRepository(private val taskDao: TaskDao) {
-    val allTasks: Flow<List<TaskData>> = taskDao.getAllTasks()
+    val allTasks: LiveData<List<TaskData>> = taskDao.getAllTasks()
 
     @WorkerThread
     suspend fun insertTask(task: TaskData) {

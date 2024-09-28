@@ -9,8 +9,7 @@ import fr.quarantedeuxmulhouse.tunsinge.todoer.data.TaskRepository
 import kotlinx.coroutines.launch
 
 class TaskListViewModel(private val repository: TaskRepository) : ViewModel() {
-    private var _indexMax = 0
-    private var _tasks: LiveData<List<TaskData>> = repository.allTasks.asLiveData()
+    var tasks: LiveData<List<TaskData>> = repository.allTasks
 
     fun addTask(task: TaskData) = viewModelScope.launch {
         repository.insertTask(task)
@@ -21,13 +20,13 @@ class TaskListViewModel(private val repository: TaskRepository) : ViewModel() {
     }
 
     fun changeState(task: TaskData, state: Boolean) = viewModelScope.launch {
-        task.state = state
-        repository.updateTask(task)
+        val updatedTask = task.copy(initialState = state)
+        repository.updateTask(updatedTask)
     }
 
     fun changeName(task: TaskData, name: String) = viewModelScope.launch {
-        task.name = name
-        repository.updateTask(task)
+        val updatedTask = task.copy(initialName = name)
+        repository.updateTask(updatedTask)
     }
 }
 
