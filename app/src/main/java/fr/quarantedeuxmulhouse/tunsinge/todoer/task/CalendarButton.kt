@@ -36,6 +36,9 @@ import java.time.ZoneOffset
 import java.util.Date
 import java.util.Locale
 
+// "bouton" sous forme de colonne pour choisir une date deadline de la tache, ainsi qu'afficher
+// cette date, et une petite icone representant le status de la tache (faite, a faire, urgente)
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CalendarButton(checked: Boolean, date: Long?, onChangeDate: (Long?) -> Unit,
@@ -47,6 +50,7 @@ fun CalendarButton(checked: Boolean, date: Long?, onChangeDate: (Long?) -> Unit,
     val soon = difference != null && difference < 259200000 // 3 days in milliseconds
     updateDeadline(soon)
 
+    // icone representant le status de la tache
     Icon(
         imageVector = if (checked) Icons.Default.CheckCircle
         else {
@@ -60,9 +64,13 @@ fun CalendarButton(checked: Boolean, date: Long?, onChangeDate: (Long?) -> Unit,
             else Color(0xff970707)
         }
     )
+
+    // text pour afficher la date sous la forme 'jj/mm'
     Text(date?.let {
         convertMillisToDate(it)
     } ?: "")
+
+    // bouton pour afficher la popup de choix de date
     IconButton(
         onClick = { showDatePicker = !showDatePicker }
     ) {
@@ -72,7 +80,10 @@ fun CalendarButton(checked: Boolean, date: Long?, onChangeDate: (Long?) -> Unit,
         )
     }
 
+    // si le bouton a ete clique, showDatePicker sera true et on affiche la popup de choix
     if (showDatePicker) {
+
+        // on utilise une popup et un datepicker pour afficher une fenetre de choix de date,
         Popup(
             onDismissRequest = {
                 onChangeDate(datePickerState.selectedDateMillis);
@@ -96,6 +107,7 @@ fun CalendarButton(checked: Boolean, date: Long?, onChangeDate: (Long?) -> Unit,
                         showModeToggle = false
                     )
                     Button(
+                        // on enregistre la date dans le viewmodel, et la base de donnee
                         onClick = {
                             onChangeDate(datePickerState.selectedDateMillis);
                             showDatePicker = false
@@ -110,6 +122,7 @@ fun CalendarButton(checked: Boolean, date: Long?, onChangeDate: (Long?) -> Unit,
     }
 }
 
+// fonction pour le formattage de la date pour l'affichage
 fun convertMillisToDate(millis: Long): String {
     val formatter = SimpleDateFormat("dd/MM", Locale.getDefault())
     return formatter.format(Date(millis))

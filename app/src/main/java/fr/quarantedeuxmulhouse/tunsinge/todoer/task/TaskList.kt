@@ -7,6 +7,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import fr.quarantedeuxmulhouse.tunsinge.todoer.viewmodel.TaskData
 
+
+// affichage de la liste des taches
+
 @Composable
 fun TaskList(
     list: List<TaskData>?,
@@ -16,14 +19,21 @@ fun TaskList(
     onCloseTask: (TaskData) -> Unit,
     modifier: Modifier = Modifier
 ) {
+    // si la liste des taches passee en parametre n'est pas vide on affiche la liste
     if (!list.isNullOrEmpty()) {
+
+        // utilisation d'une lazy column pour la prise en charge du defilement et de la population
+        // progressive de la liste
         LazyColumn(
             modifier = modifier
         ) {
+            // population de la lazycolumn avec items
             items(
                 items = list,
                 key = { task: TaskData -> task.id }
             ) { task: TaskData ->
+
+                // pour chaque tache de la liste on cree un composable task pour l'affichage
                 Task(
                     name = task.name,
                     checked = task.state,
@@ -43,5 +53,6 @@ fun TaskList(
             }
         }
     }
+    // sinon on affiche un texte notifiant de l'absence de taches a afficher
     else Text("Il n'y a pas encore de tâches à afficher")
 }

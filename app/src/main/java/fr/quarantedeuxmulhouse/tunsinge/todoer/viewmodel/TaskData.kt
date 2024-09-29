@@ -6,6 +6,9 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import java.util.UUID
 
+// entity utilisee pour le viewmodel et aussi par room pour la creation de la table de la
+// base de donnee
+
 @Entity(tableName = "tasks")
 data class TaskData(
     @PrimaryKey

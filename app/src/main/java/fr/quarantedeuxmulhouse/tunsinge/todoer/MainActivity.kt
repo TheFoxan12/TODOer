@@ -24,7 +24,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
@@ -32,6 +31,8 @@ import fr.quarantedeuxmulhouse.tunsinge.todoer.task.TaskScreen
 import fr.quarantedeuxmulhouse.tunsinge.todoer.ui.theme.TODOerTheme
 import fr.quarantedeuxmulhouse.tunsinge.todoer.viewmodel.TaskListViewModel
 import fr.quarantedeuxmulhouse.tunsinge.todoer.viewmodel.TaskListViewModelFactory
+
+// activite principale de l'application kotlin
 
 class MainActivity : ComponentActivity() {
     private val taskManager: TaskListViewModel by viewModels {
@@ -41,6 +42,8 @@ class MainActivity : ComponentActivity() {
     @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // on affiche le splashscreen tant que la liste des taches n'est pas chargee
         installSplashScreen().apply {
             setKeepOnScreenCondition {
                 taskManager.tasks.value == null
@@ -53,6 +56,8 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier
                         .fillMaxSize(),
                     topBar = {
+
+                        // topappbar customisee, avec le logo de l'application ainsi que le nom
                         TopAppBar(
                             colors = topAppBarColors(
                                 containerColor = colorScheme.background,
@@ -83,6 +88,8 @@ class MainActivity : ComponentActivity() {
                     Column(
                         modifier = Modifier.padding(padding)
                     ) {
+
+                        // affichage de l'ecran des taches avec taskscreen
                         TaskScreen(
                             modifier = Modifier.windowInsetsPadding(WindowInsets.safeDrawing),
                             taskManager = taskManager,

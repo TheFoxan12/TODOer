@@ -20,6 +20,8 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import fr.quarantedeuxmulhouse.tunsinge.todoer.viewmodel.TaskData
 import fr.quarantedeuxmulhouse.tunsinge.todoer.viewmodel.TaskListViewModel
 
+// affichage de la liste des taches et du bouton d'ajout de tache
+
 @Composable
 fun TaskScreen(
     modifier: Modifier = Modifier,
@@ -34,6 +36,8 @@ fun TaskScreen(
         Row(
             modifier = Modifier.weight(2f).fillMaxHeight()
         ) {
+
+            // on affiche les taches avec le composable tasklist
             TaskList(
                 list = tasks,
                 onCheckedTask = { task, state ->
@@ -51,11 +55,15 @@ fun TaskScreen(
                 modifier = modifier
             )
         }
+
+        // bouton qui sert a ajouter une tache a la liste
         Row(
             modifier = modifier
                 .windowInsetsPadding(WindowInsets.safeDrawing)
                 .padding(5.dp)
         ) {
+
+            // lors d'un clic on utilise le viewmodel pour ajouter une tache a la liste
             Button(
                 onClick = { taskManager.addTask(
                     TaskData(
