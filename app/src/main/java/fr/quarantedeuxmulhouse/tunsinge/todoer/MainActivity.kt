@@ -6,12 +6,17 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.safeDrawing
+import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.ViewModelProvider
 import fr.quarantedeuxmulhouse.tunsinge.todoer.task.TaskScreen
@@ -32,11 +37,14 @@ class MainActivity : ComponentActivity() {
                 Scaffold(modifier = Modifier.fillMaxSize()) { padding ->
                     Column() {
                         Text(
-                            modifier = Modifier.padding(padding),
+                            modifier = Modifier
+                                .padding(padding)
+                                .align(Alignment.CenterHorizontally),
                             text = "TODOer",
                             style = TextStyle(fontSize = 40.sp)
                         )
-                        TaskScreen(taskManager = taskManager)
+                        TaskScreen(taskManager = taskManager,
+                            modifier = Modifier.windowInsetsPadding(WindowInsets.safeDrawing))
                     }
                 }
             }

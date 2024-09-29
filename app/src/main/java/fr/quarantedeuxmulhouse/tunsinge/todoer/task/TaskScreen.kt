@@ -3,9 +3,13 @@ package fr.quarantedeuxmulhouse.tunsinge.todoer.task
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.safeDrawing
+import androidx.compose.foundation.layout.windowInsetsBottomHeight
+import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -45,13 +49,14 @@ fun TaskScreen(
                 },
                 onDateChange = { task, date ->
                     taskManager.changeDate(task, date)
-                }
+                },
+                modifier = modifier
             )
         }
         Row(
-            modifier = Modifier.padding(
-                bottom = 100.dp
-            )
+            modifier = modifier
+                .windowInsetsPadding(WindowInsets.safeDrawing)
+                .padding(5.dp)
         ) {
             Button(
                 onClick = { taskManager.addTask(

@@ -37,7 +37,8 @@ fun TaskList(
                     onDateChange = { date ->
                         onDateChange(task, date)
                     },
-                    onClose = { onCloseTask(task) }
+                    onClose = { onCloseTask(task) },
+                    modifier = modifier
                 )
             }
         }
