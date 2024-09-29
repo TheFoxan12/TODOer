@@ -84,4 +84,5 @@ dependencies {
     implementation(libs.androidx.room.ktx)
 
     implementation(libs.material3)
+    implementation(libs.core.splashscreen)
 }
