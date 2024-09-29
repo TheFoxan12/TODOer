@@ -16,9 +16,7 @@ import androidx.compose.material3.Text
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.ViewModelProvider
 import fr.quarantedeuxmulhouse.tunsinge.todoer.task.TaskScreen
 import fr.quarantedeuxmulhouse.tunsinge.todoer.ui.theme.TODOerTheme
 import fr.quarantedeuxmulhouse.tunsinge.todoer.viewmodel.TaskListViewModel
