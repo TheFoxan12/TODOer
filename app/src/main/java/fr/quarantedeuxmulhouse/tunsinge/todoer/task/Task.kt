@@ -78,7 +78,7 @@ fun Task(
         Column (
             modifier = modifier
                 .fillMaxHeight(),
-            verticalArrangement = Arrangement.Bottom,
+            verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             CalendarButton(checked, date, onDateChange, { deadline -> soon = deadline },
