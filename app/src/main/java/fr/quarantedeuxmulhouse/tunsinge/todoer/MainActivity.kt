@@ -17,6 +17,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.sp
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import fr.quarantedeuxmulhouse.tunsinge.todoer.task.TaskScreen
 import fr.quarantedeuxmulhouse.tunsinge.todoer.ui.theme.TODOerTheme
 import fr.quarantedeuxmulhouse.tunsinge.todoer.viewmodel.TaskListViewModel
@@ -29,6 +30,11 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        installSplashScreen().apply {
+            setKeepOnScreenCondition {
+                taskManager.tasks.value == null
+            }
+        }
         enableEdgeToEdge()
         setContent {
             TODOerTheme {
