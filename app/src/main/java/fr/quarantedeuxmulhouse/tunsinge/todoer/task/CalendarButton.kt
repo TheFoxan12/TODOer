@@ -60,6 +60,9 @@ fun CalendarButton(checked: Boolean, date: Long?, onChangeDate: (Long?) -> Unit,
             else Color(0xff970707)
         }
     )
+    Text(date?.let {
+        convertMillisToDate(it)
+    } ?: "")
     IconButton(
         onClick = { showDatePicker = !showDatePicker }
     ) {
@@ -68,9 +71,6 @@ fun CalendarButton(checked: Boolean, date: Long?, onChangeDate: (Long?) -> Unit,
             contentDescription = "Select deadline"
         )
     }
-    Text(date?.let {
-        convertMillisToDate(it)
-    } ?: "")
 
     if (showDatePicker) {
         Popup(
