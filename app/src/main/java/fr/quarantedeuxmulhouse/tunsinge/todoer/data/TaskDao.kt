@@ -11,7 +11,7 @@ import fr.quarantedeuxmulhouse.tunsinge.todoer.viewmodel.TaskData
 
 @Dao
 interface TaskDao {
-    @Query("SELECT * FROM tasks ORDER BY id ASC")
+    @Query("SELECT * FROM tasks ORDER BY initialDate ASC")
     fun getAllTasks(): LiveData<List<TaskData>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
