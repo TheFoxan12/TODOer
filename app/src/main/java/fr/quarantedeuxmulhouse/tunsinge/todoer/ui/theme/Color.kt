@@ -1,8 +1,6 @@
 package fr.quarantedeuxmulhouse.tunsinge.todoer.ui.theme
 
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.colorResource
-import fr.quarantedeuxmulhouse.tunsinge.todoer.R
 
 val Purple80 = Color(0xFFD0BCFF)
 val PurpleGrey80 = Color(0xFFCCC2DC)
