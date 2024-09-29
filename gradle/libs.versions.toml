@@ -20,6 +20,7 @@ roomRuntime = "1.0.0"
 roomVersion = "2.6.1"
 lifecycleLivedataKtx = "2.8.6"
 runtimeLivedata = "1.7.2"
+core-splashscreen = "1.0.1"
 
 [libraries]
 androidx-activity-ktx = { module = "androidx.activity:activity-ktx", version.ref = "activityCompose" }
@@ -56,6 +57,7 @@ androidx-lifecycle-livedata-ktx = { group = "androidx.lifecycle", name = "lifecy
 material3 = { module = "androidx.compose.material3:material3", version.ref = "material3" }
 room-compiler = { module = "androidx.room:room-compiler" }
 androidx-runtime-livedata = { group = "androidx.compose.runtime", name = "runtime-livedata", version.ref = "runtimeLivedata" }
+core-splashscreen = { group = "androidx.core", name = "core-splashscreen", version.ref = "core-splashscreen" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
